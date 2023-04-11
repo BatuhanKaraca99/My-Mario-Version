@@ -15,6 +15,7 @@ public static class Extensions
 
         RaycastHit2D hit = Physics2D.CircleCast(rigidbody.position, radius, direction.normalized, distance,layerMask);
         return hit.collider != null && hit.rigidbody != rigidbody; //not our rigidbody
+        //return true if there is the object we hit it's collider
     }
 
     public static bool DotTest(this Transform transform, Transform other, Vector2 testDirection)
