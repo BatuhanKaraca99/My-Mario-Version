@@ -98,8 +98,18 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        //if mario bumps on enemy
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            //if colliding happens when going down
+            if(transform.DotTest(collision.transform,Vector2.down))
+            {
+                velocity.y = jumpForce / 2f; //move up
+                jumping = true;
+            }
+        }
         //up
-        if(collision.gameObject.layer != LayerMask.NameToLayer("PowerUp")) //if not powerup
+        else if(collision.gameObject.layer != LayerMask.NameToLayer("PowerUp")) //if not powerup
         {
             if (transform.DotTest(collision.transform, Vector2.up))
             {
