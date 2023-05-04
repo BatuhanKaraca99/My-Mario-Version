@@ -17,8 +17,12 @@ public class Koopa : MonoBehaviour
         {
             Player player = collision.gameObject.GetComponent<Player>(); //our player
 
+            if (player.starpower) //if player has starpower
+            {
+                Hit(); //koopa gets hit
+            }
             //if the player hits to koopa while moving down 
-            if (collision.transform.DotTest(transform, Vector2.down))
+            else if (collision.transform.DotTest(transform, Vector2.down))
             {
                 EnterShell(); //koopa enters to shell
             }
@@ -42,7 +46,14 @@ public class Koopa : MonoBehaviour
             else //if shell is moving 
             {
                 Player player = other.GetComponent<Player>();
-                player.Hit(); //if we touch to moving shell we die
+                if (player.starpower) //if player has starpower
+                {
+                    Hit(); //destroy koopa shell
+                }
+                else
+                {
+                    player.Hit(); //if we touch to moving shell we die
+                }
             } 
         }
         else if(!shelled && other.gameObject.layer == LayerMask.NameToLayer("Shell")) //koopa hit(maybe other shell)

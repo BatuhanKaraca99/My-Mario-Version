@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public int world { get; private set; } //which world we are in
     public int stage { get; private set; } //which stage we are in
     public int lives { get; private set; } //life count
+    public int coins { get; private set; } //coin count
 
     private void Awake()
     {
@@ -33,12 +34,14 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        Application.targetFrameRate = 60; //wanted render rate(we don't want big FPS)
         NewGame();
     }
 
     private void NewGame()
     {
         lives = 3;
+        coins = 0;
 
         LoadLevel(1,1);
    }
@@ -82,5 +85,20 @@ public class GameManager : MonoBehaviour
         NewGame(); //Other option
     }
 
+    public void AddCoin()
+    {
+        coins++; //add coin
+
+        if (coins == 100)
+        {
+            AddCoin();
+            coins = 0; //reset coin
+        }
+    }
+
+    public void AddLife() //for mushroom too
+    {
+        lives++;
+    }
 }
 

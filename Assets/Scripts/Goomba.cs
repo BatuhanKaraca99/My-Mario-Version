@@ -12,8 +12,12 @@ public class Goomba : MonoBehaviour
         {
             Player player = collision.gameObject.GetComponent<Player>(); //our player
 
+            if (player.starpower) //if player has starpower
+            {
+                Hit(); //goomba gets hit
+            }
             //if the player hits to goomba while moving down 
-            if (collision.transform.DotTest(transform, Vector2.down))
+            else if (collision.transform.DotTest(transform, Vector2.down))
             {
                 Flatten(); //goomba flatten
             } else
