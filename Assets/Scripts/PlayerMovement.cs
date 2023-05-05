@@ -4,6 +4,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private new Camera camera;
     private new Rigidbody2D rigidbody;
+    private new Collider2D collider; //collider reference
 
     private Vector2 velocity;
     private float inputAxis;
@@ -22,9 +23,25 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
+        collider = GetComponent<Collider2D>();
         camera = Camera.main;
     }
 
+    private void OnEnable() //if mario is enabled
+    {
+        rigidbody.isKinematic = false;
+        collider.enabled = true;
+        velocity = Vector2.zero;
+        jumping = false;
+    }
+    private void OnDisable() //if mario is disabled
+    {
+        rigidbody.isKinematic = true;
+        collider.enabled = false;
+        velocity = Vector2.zero; //make velocity 0
+        jumping = false;
+        
+    }
     private void Update()
     {
         HorizontalMovement();
