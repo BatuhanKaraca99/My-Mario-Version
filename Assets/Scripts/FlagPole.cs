@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class FlagPole : MonoBehaviour
 {
+    public AudioSource source;
+    public AudioClip flag_s; //flag sound
+
     //references
     public Transform flag;
     public Transform poleBottom;
@@ -23,6 +26,7 @@ public class FlagPole : MonoBehaviour
     //mario animation
     private IEnumerator LevelCompleteSequence(Transform player)
     {
+        source.PlayOneShot(flag_s);
         //disable mario's movement
         player.GetComponent<PlayerMovement>().enabled = false;
 

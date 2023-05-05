@@ -20,6 +20,9 @@ public class PlayerMovement : MonoBehaviour
     public bool running => Mathf.Abs(velocity.x) > 0.25f || Mathf.Abs(inputAxis) > 0.25f;
     public bool sliding => (inputAxis > 0f && velocity.x < 0f) || (inputAxis < 0f && velocity.x > 0f); //turning
 
+    public AudioSource source;
+    public AudioClip bump; //for bumping enemy
+
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
@@ -123,6 +126,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 velocity.y = jumpForce / 2f; //move up
                 jumping = true;
+                source.PlayOneShot(bump);
             }
         }
         //up

@@ -7,6 +7,9 @@ public class BlockHit : MonoBehaviour
     public Sprite emptyBlock; //after hit
     public int maxHits = -1; //block hit count
 
+    public AudioSource source;
+    public AudioClip block; //block sound
+
     private bool animating;
 
     private void OnCollisionEnter2D(Collision2D collision) //detect when something hit block
@@ -22,6 +25,7 @@ public class BlockHit : MonoBehaviour
 
     private void Hit()
     {
+        source.PlayOneShot(block);
         SpriteRenderer spriteRenderer=GetComponent<SpriteRenderer>();
         spriteRenderer.enabled = true; //especially for hidden mystery boxes
 

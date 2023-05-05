@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class PowerUp : MonoBehaviour
 {
+    public AudioSource source;
+    public AudioClip coin; //coin sound
+
     public enum Type //what type of powerup
     {
         Coin,
@@ -25,6 +28,7 @@ public class PowerUp : MonoBehaviour
         switch (type)
         {
             case Type.Coin:
+                source.PlayOneShot(coin);
                 GameManager.Instance.AddCoin();
                 break;
 

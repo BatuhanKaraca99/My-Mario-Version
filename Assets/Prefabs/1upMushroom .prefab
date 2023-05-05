@@ -165,6 +165,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c227d86df472544686f2f0bfd09909a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  source: {fileID: 0}
+  coin: {fileID: 8300000, guid: e93aa81c47b124348ba8729f8bd3ec58, type: 3}
+  mushroom: {fileID: 0}
   type: 1
 --- !u!114 &2164260507787689164
 MonoBehaviour:

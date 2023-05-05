@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class Pipe : MonoBehaviour
 {
+    public AudioSource source;
+    public AudioClip pipe; //pipe sound
+
     public Transform connection; //where will pipe connect/lead
     public KeyCode enterKeyCode = KeyCode.S; //default key (S for now)
     public Vector3 enterDirection = Vector3.down; //enter direction
@@ -23,6 +26,7 @@ public class Pipe : MonoBehaviour
 
     private IEnumerator Enter(Transform player) //mario's transform
     {
+        source.PlayOneShot(pipe);
         //disable mario's movement
         player.GetComponent<PlayerMovement>().enabled = false;
 
@@ -45,7 +49,7 @@ public class Pipe : MonoBehaviour
             player.position = connection.position;
             player.localScale = Vector3.one;
         }
-
+        source.PlayOneShot(pipe);
         player.GetComponent<PlayerMovement>().enabled = true; 
     }
 
